@@ -1,0 +1,36 @@
+c resample spectrum to stellarnet grid
+c 273nm - 899.5 nm step 0.5
+        integer npts,nout,i,ii
+        real l0,lf,dl,d,dmin,spi(10000),spo(1254),lamb,lambda(10000)
+        l0=273.
+        lf=899.5
+        dl=0.5
+        nout=1254
+        npts=10000
+        open(unit=1,file='bresamp.txt',status='old')
+          n=1
+          do i=1,npts
+            read(1,*,end=100) lambda(i), spi(i)
+            n=n+1
+          enddo
+  100   close(unit=1)
+        print*,n
+        do ii=1,1254
+          dmin=1000.
+          do i=1,n
+             d=abs(lambda(i)-(l0+real(ii-1)*dl))
+             if (d.lt.dmin) then
+                dmin=d
+                spo(ii)=spi(i)
+             endif             
+          enddo
+        enddo
+        open(unit=2,file='aresamp.txt',status='unknown')
+          do ii=1,1254  
+             lamb=l0+real(ii-1)*dl 
+             write(2,*) lamb,spo(ii)
+          enddo
+        close(unit=2)   
+        stop
+        end
+        
