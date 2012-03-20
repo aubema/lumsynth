@@ -4,8 +4,8 @@ nzd=0
 nbc=-1
 nzc=-1
 li1=0
-lf1=400
-li2=700
+lf1=300
+li2=900
 lf2=2000
 while true; do
 choice="$(zenity --width=200 --height=250 --list --column "Command" --title="SynthSP main window" \
@@ -37,7 +37,7 @@ case "${choice}" in
     done
     ;;
     "4) Exclude spectrum parts")
-ninterv=$(zenity --list --text="Fitting zones" --checklist --separator="\n" --print-column=ALL --column activer --column "Min Wavelength" --column "Max wavelength" 1 400 410 2 420 430 3 430 440 4 440 450 5 450 460 6 460 470 7 470 480 8 480 490 9 490 500 10 500 510 11 510 520 12 520 530 13 530 540 14 540 550 15 550 560 16 560 570 17 570 580 18 580 590 19 590 600 20 600 610 21 610 620 22 620 630 23 630 640 24 640 650 25 650 660 26 660 670 27 670 680 28 680 690 29 690 700 )
+ninterv=$(zenity --list --text="Fitting zones" --checklist --separator="\n" --print-column=ALL --column activer --column "Min Wavelength" --column "Max wavelength" 1 300 320 2 320 340 3 340 360 4 360 380 5 380 400 6 400 410 8 420 430 8 430 440 9 440 450 10 450 460 11 460 470 12 470 480 13 480 490 14 490 500 15 500 510 16 510 520 17 520 530 18 530 540 19 540 550 20 550 560 21 560 570 22 570 580 23 580 590 24 590 600 25 600 610 26 610 620 27 620 630 28 630 640 29 640 650 30 650 660 31 660 670 32 670 680 33 680 690 34 690 700 35 700 720 36 720 740 37 740 760 38 760 780 39 780 800 40 800 850 41 850 900 )
 echo $ninterv
 nbc=`echo $ninterv | wc -w`
 if [ ! $nbc ] 
@@ -56,7 +56,7 @@ fi
     ;;
 
     "5) Set spectrum parts to 0")
-nzero=$(zenity --list --text="Zero zones" --checklist --separator="\n" --print-column=ALL --column "Set to 0" --column "Min Wavelength" --column "Max wavelength" 1 400 410 2 420 430 3 430 440 4 440 450 5 450 460 6 460 470 7 470 480 8 480 490 9 490 500 10 500 510 11 510 520 12 520 530 13 530 540 14 540 550 15 550 560 16 560 570 17 570 580 18 580 590 19 590 600 20 600 610 21 610 620 22 620 630 23 630 640 24 640 650 25 650 660 26 660 670 27 670 680 28 680 690 29 690 700 )
+nzero=$(zenity --list --text="Zero zones" --checklist --separator="\n" --print-column=ALL --column "Set to 0" --column "Min Wavelength" --column "Max wavelength" 1 300 320 2 320 340 3 340 360 4 360 380 5 380 400 6 400 410 8 420 430 8 430 440 9 440 450 10 450 460 11 460 470 12 470 480 13 480 490 14 490 500 15 500 510 16 510 520 17 520 530 18 530 540 19 540 550 20 550 560 21 560 570 22 570 580 23 580 590 24 590 600 25 600 610 26 610 620 27 620 630 28 630 640 29 640 650 30 650 660 31 660 670 32 670 680 33 680 690 34 690 700 35 700 720 36 720 740 37 740 760 38 760 780 39 780 800 40 800 850 41 850 900 )
 echo $nzero
 nzc=`echo $nzero | wc -w`
 if [ ! $nzc ]
@@ -110,7 +110,7 @@ echo "nbc="$nbc
     zenity --text-info --width=400 --height=500 --filename=$expfolder/synthetiseur.in &
     synthetiseur33 
     echo "set style data lines" > $expfolder/gnuplot.in
-    echo "set xrange [400:730]" >> $expfolder/gnuplot.in
+    echo "set xrange [300:900]" >> $expfolder/gnuplot.in
     echo "set zeroaxis" >> $expfolder/gnuplot.in
     echo "plot 'spi.txt'" >> $expfolder/gnuplot.in
     echo "replot 'spo.txt'" >> $expfolder/gnuplot.in
